@@ -4,10 +4,14 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod --localize",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "serve-en": "ng serve --configuration=en",
+    "serve-he": "ng serve",
+    "extract-i18n": "ng xi18n ng-i18n-multilang --i18n-format xlf --output-path src/locale --i18n-locale he && ng run ng-i18n-multilang:xliffmerge",
+    "start-http":"http-server dist/ng-i18n-multilang -p 8080 -o http://localhost:8080/en"
   },
   "private": true,
   "dependencies": {
@@ -16,9 +20,11 @@
     "@angular/compiler": "~9.0.0",
     "@angular/core": "~9.0.0",
     "@angular/forms": "~9.0.0",
+    "@angular/localize": "^9.0.2",
     "@angular/platform-browser": "~9.0.0",
     "@angular/platform-browser-dynamic": "~9.0.0",
     "@angular/router": "~9.0.0",
+    "@ngx-i18nsupport/tooling": "^8.0.3",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
@@ -28,6 +34,7 @@
     "@angular/cli": "~9.0.1",
     "@angular/compiler-cli": "~9.0.0",
     "@angular/language-service": "~9.0.0",
+    "@ngx-i18nsupport/ngx-i18nsupport": "^1.1.6",
     "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",

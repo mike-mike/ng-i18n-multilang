@@ -1,9 +1,15 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "ng-i18n-multilang": {
+      "i18n": {
+        "sourceLocale": "he",
+        "locales": {
+          "en": "src/locale/messages.en.xlf"
+        }
+      },
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -19,6 +25,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
+            "i18nLocale": "he",
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -56,6 +63,11 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "en": {
+              "localize": [
+                "en"
+              ]
             }
           }
         },
@@ -67,6 +79,9 @@
           "configurations": {
             "production": {
               "browserTarget": "ng-i18n-multilang:build:production"
+            },
+            "en": {
+              "browserTarget": "ng-i18n-multilang:build:en"
             }
           }
         },
@@ -117,8 +132,24 @@
               "devServerTarget": "ng-i18n-multilang:serve:production"
             }
           }
+        },
+        "xliffmerge": {
+          "builder": "@ngx-i18nsupport/tooling:xliffmerge",
+          "options": {
+            "xliffmergeOptions": {
+              "i18nFile": "messages.xlf",
+              "format": "xlf",
+              "srcDir": "src/locale",
+              "genDir": "src/locale",
+              "defaultLanguage": "he",
+              "languages": [
+                "en"
+              ]
+            }
+          }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "ng-i18n-multilang"
 }
